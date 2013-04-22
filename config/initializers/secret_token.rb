@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Molou::Application.config.secret_token = '2f09e13152accc6e2dd712d87da00a388225609a6f47db10def4a3d29766f7d9bef54b3a9c4b705142603cd33072bbfad987afd5a524d7af2e2d4a6ea6ed2a50'
+Molou::Application.config.secret_token = '3bc5ca2a649352f590ddb39138b6727b598cb673f00554aec2c0f272e5b8d7b751303808ac33428f1b55b36b6ba7e74f55d25a7175f9eba5ef6c13dda6f36587'
