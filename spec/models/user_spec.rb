@@ -18,8 +18,7 @@ require 'spec_helper'
 describe User do
 
 	before { @users = User.new(f_name: "f_name", l_name: "l_name",password: "password",
-								password_confirmation: "password", email: "email",
-								address: "address", phone: "phone") }
+				password_confirmation: "password", email: "email", address: "address", phone: "phone") }
 	
 	subject { @users }
 	
@@ -30,12 +29,12 @@ describe User do
 	it { should respond_to(:password_digest) }
 	it { should respond_to(:password) }
 	it { should respond_to(:password_confirmation) }
-	it { should respond_to(:authenticate) }
 	it { should respond_to(:email) }
 	it { should respond_to(:address) }
 	it { should respond_to(:phone) }
 	
 	it { should be_valid }
+	it { should respond_to(:authenticate) }
 	
 	describe "when f_name is not present" do
 		before { @users.f_name = " " }
@@ -52,6 +51,7 @@ describe User do
 		it { should_not be_valid }
 	end
 	
+	#email validation
 	describe "when email format is invalid" do
 		it "should be invalid" do
 			addresses = %w[user@foo,com user_at_foo.org example.user@foo.
@@ -62,7 +62,6 @@ describe User do
 			end
 		end
 	end
-	
 	describe "when email format is valid" do
 		it "should be valid" do
 			addresses = %w[user@foo.COM A_US-ER@f.b.org frst.lst@foo.jp a+b@baz.cn]
@@ -72,38 +71,37 @@ describe User do
 			end
 		end
 	end
-	
 	describe "when email address is already taken" do
 		before do
 			user_with_same_email = @users.dup
 			user_with_same_email.email = @users.email.upcase
 			user_with_same_email.save
 		end
-		
+	
+		it { should_not be_valid }
+	end
+	
+	#password validation
 	describe "when password is not present" do
 		before { @users.password = @users.password_confirmation = " " }
-			it { should_not be_valid }
-		end
-		
+		it { should_not be_valid }
+	end
 	describe "when password doesn't match confirmation" do
 		before { @users.password_confirmation = "mismatch" }
-			it { should_not be_valid }
-		end
-		
+		it { should_not be_valid }
+	end
 	describe "when password confirmation is nil" do
 		before { @users.password_confirmation = nil }
-			it { should_not be_valid }
-		end
-
+		it { should_not be_valid }
+	end
 	describe "with a password that's too short" do
 		before { @users.password = @users.password_confirmation = "a" * 5 }
-			it { should be_invalid }
-		end
-		
+		it { should be_invalid }
+	end
 	describe "return value of authenticate method" do
 		before { @users.save }
-			let(:found_user) { User.find_by_email(@users.email) }
-			
+		let(:found_user) { User.find_by_email(@users.email) }
+		
 		describe "with valid password" do
 			it { should == found_user.authenticate(@users.password) }
 		end
@@ -113,8 +111,5 @@ describe User do
 			it { should_not == user_for_invalid_password }
 			specify { user_for_invalid_password.should be_false }
 		end
-	end
-	
-		it { should_not be_valid }
 	end
 end

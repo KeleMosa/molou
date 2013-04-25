@@ -1,4 +1,5 @@
 Molou::Application.routes.draw do
+	
   get "shipment/new"
 
   get "vendor/new"
@@ -7,7 +8,7 @@ Molou::Application.routes.draw do
 
   get "admin/new"
 
-  get "users/new"
+  resources :users
 
   root to: 'static_pages#home'
 
