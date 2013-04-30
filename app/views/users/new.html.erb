@@ -6,25 +6,25 @@
 		<%= form_for(@users) do |f| %>
 			<%= render 'shared/error_messages' %>
 		
-			<%= f.label :FIRST_NAME, "First Name" %>
+			<%= f.label :f_name, "First Name" %>
 			<%= f.text_field :f_name %>
 			
-			<%= f.label :LAST_NAME %>
+			<%= f.label :l_name, "Last Name" %>
 			<%= f.text_field :l_name %>
 
-			<%= f.label :EMAIL %>
+			<%= f.label :email %>
 			<%= f.text_field :email %>
 		
-			<%= f.label :PASSWORD %>
+			<%= f.label :password %>
 			<%= f.password_field :password %>
 
-			<%= f.label :CONFIRM_PASSWORD, "Confirm Password" %>
+			<%= f.label :password_confirmation, "Confirm Password" %>
 			<%= f.password_field :password_confirmation %>
 			
-			<%= f.label :ADDRESS %>
+			<%= f.label :address %>
 			<%= f.text_field :address %>
 			
-			<%= f.label :PHONE %>
+			<%= f.label :phone %>
 			<%= f.text_field :phone %>
 		
 			<%= f.submit "Create my account", class: "btn btn-large btn-primary" %>

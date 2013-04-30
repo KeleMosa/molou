@@ -24,6 +24,9 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.2.3'
+  gem 'cucumber-rails', '1.2.1', require: false
+  gem 'database_cleaner', '0.7.0'
+
 end
 
 gem 'jquery-rails', '>=2.0.0'
